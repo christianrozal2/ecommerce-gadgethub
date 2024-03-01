@@ -23,7 +23,8 @@ app.use(cors());
 mongoose.connect("mongodb+srv://christianrozal2:admin@cluster0.vgdpbcv.mongodb.net/E-Commerce-API-MVP?retryWrites=true&w=majority")
 
 app.get("/", (req, res) => {
-	res.json("Hello")
+    console.log("Request received for root route '/'"); 
+    res.json("Hello")
 })
 
 // [SECTION] Backend Routes
