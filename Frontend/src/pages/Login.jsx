@@ -12,7 +12,7 @@ export default function Login() {
 
     function authenticate(e) {
         e.preventDefault();
-        fetch(`${REACT_APP_API_BASE_URL}/users/login`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/users/login`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -52,7 +52,7 @@ export default function Login() {
     }
 
     const retrieveUserDetails = (token) => {
-        fetch(`${REACT_APP_API_BASE_URL}/users/details`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/users/details`, {
             headers: {
                 Authorization: `Bearer ${ token }`
             }

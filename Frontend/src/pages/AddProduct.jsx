@@ -31,7 +31,7 @@ export default function AddProduct() {
 
     let token = localStorage.getItem('token'); 
 
-    fetch(`${REACT_APP_API_BASE_URL}/products/`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/products/`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

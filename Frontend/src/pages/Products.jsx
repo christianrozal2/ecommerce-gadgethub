@@ -19,7 +19,7 @@ export default function Products(){
 	const fetchData = () => {
 
 		// Allows to have a dynamic url depending whether the user that's logged in is an admin or not
-		let fetchUrl = user.isAdmin === true ? `${REACT_APP_API_BASE_URL}/products/all` : `${REACT_APP_API_BASE_URL}/products/`
+		let fetchUrl = user.isAdmin === true ? `${import.meta.env.VITE_API_BASE_URL}/products/all` : `${import.meta.env.VITE_API_BASE_URL}/products/`
 
 		// headers is included for both /products/all and /products/ to allow flexibility even if it is not needed
 		fetch(fetchUrl, {

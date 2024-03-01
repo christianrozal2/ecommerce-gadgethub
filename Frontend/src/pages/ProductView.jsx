@@ -34,7 +34,7 @@ const ProductView = () => {
         console.log('Quantity:', quantity);
         console.log('Calculated Subtotal:', calculatedSubtotal);
     
-        fetch(`${REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/cart/add-to-cart`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const ProductView = () => {
     }, [quantity, price])
 
     useEffect(() => {
-        fetch(`${REACT_APP_API_BASE_URL}/products/${productId}`)
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${productId}`)
         .then(res => res.json())
         .then(data => {
             setName(data.product.name);
