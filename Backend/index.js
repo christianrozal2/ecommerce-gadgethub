@@ -21,6 +21,11 @@ app.use(cors());
 // [SECTION] Database Connection
 
 mongoose.connect("mongodb+srv://christianrozal2:admin@cluster0.vgdpbcv.mongodb.net/E-Commerce-API-MVP?retryWrites=true&w=majority")
+
+app.get("/", (req, res) => {
+	res.json("Hello")
+})
+
 // [SECTION] Backend Routes
 // Groups all routes in userRoutes under "/users"
 app.use("/users", userRoutes);
