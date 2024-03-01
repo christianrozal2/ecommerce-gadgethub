@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Bold';
+  src: url('./fonts/itc-avant-garde-gothic-bold.woff2') format('woff2'),
+       url('./fonts/itc-avant-garde-gothic-bold.woff') format('woff'); /* Add other formats as needed */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.backgroundImage {
+  width: 50%;
+  height: 100vh;
+  background-image: url('./assets/reg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.backgroundImage1 {
+  width: 50%;
+  height: 100vh;
+  background-image: url('./assets/log.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.backgroundImage2 {
+  background-image: url('./assets/hero.png');
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+.custom-number-input::-webkit-inner-spin-button,
+.custom-number-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.custom-number-input {
+  -moz-appearance: textfield;
+}
