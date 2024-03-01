@@ -21,6 +21,13 @@ app.use(cors());
 // [SECTION] Database Connection
 
 mongoose.connect("mongodb+srv://christianrozal2:admin@cluster0.vgdpbcv.mongodb.net/E-Commerce-API-MVP?retryWrites=true&w=majority")
+    .then(() => { 
+        console.log("Database connected successfully");
+
+    })
+    .catch(error => {
+        console.error("Error connecting to database:", error); 
+    }); 
 
 app.get("/", (req, res) => {
     console.log("Request received for root route '/'"); 
