@@ -37,6 +37,7 @@ app.use('/order', orderRoutes);
 // [SECTION] Server Gateway Response
 if(require.main === module){
 	// "process.env.PORT || port" will use the environment variable if it is avaiable OR will used port 4000 if none is defined
+	console.log("API Server attempting to start..."); 
 	app.listen(process.env.PORT || port, () => {
 		console.log(`API is now online on port ${process.env.PORT || port}`)
 	});
