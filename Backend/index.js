@@ -23,10 +23,10 @@ app.use(cors());
 mongoose.connect("mongodb+srv://christianrozal2:admin@cluster0.vgdpbcv.mongodb.net/E-Commerce-API-MVP?retryWrites=true&w=majority")
 // [SECTION] Backend Routes
 // Groups all routes in userRoutes under "/users"
-app.use("/b1/users", userRoutes);
-app.use('/b1/products', productRoutes);
-app.use('/b1/cart', cartRoutes);
-app.use('/b1/order', orderRoutes);
+app.use("/users", userRoutes);
+app.use('/products', productRoutes);
+app.use('/cart', cartRoutes);
+app.use('/order', orderRoutes);
 
 // [SECTION] Server Gateway Response
 if(require.main === module){
