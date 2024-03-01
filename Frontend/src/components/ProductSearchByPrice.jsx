@@ -8,7 +8,7 @@ const ProductSearchByPrice = ({ onPriceSearch }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products/searchByPrice', {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/products/searchByPrice`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

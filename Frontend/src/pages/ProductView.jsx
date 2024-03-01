@@ -34,7 +34,7 @@ const ProductView = () => {
         console.log('Quantity:', quantity);
         console.log('Calculated Subtotal:', calculatedSubtotal);
     
-        fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/cart/add-to-cart`, {
+        fetch(`${REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const ProductView = () => {
     }, [quantity, price])
 
     useEffect(() => {
-        fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products/${productId}`)
+        fetch(`${REACT_APP_API_BASE_URL}/products/${productId}`)
         .then(res => res.json())
         .then(data => {
             setName(data.product.name);

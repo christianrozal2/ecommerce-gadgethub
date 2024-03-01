@@ -4,7 +4,7 @@ import Button from './Button';
 export default function ArchiveProduct({ product, isActive, fetchData }) {
 
     const archiveToggle = (productId) => {
-        fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products/${productId}/archive`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${productId}/archive`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export default function ArchiveProduct({ product, isActive, fetchData }) {
     }
 
     const activateToggle = (productId) => {
-        fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products/${productId}/activate`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${productId}/activate`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

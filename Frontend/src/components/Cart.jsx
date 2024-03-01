@@ -31,7 +31,7 @@ const Cart = () => {
       setCartItems(updatedCartItems);
   
       // Send a request to update the quantity on the server
-      const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/cart/update-cart-quantity', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/cart/update-cart-quantity`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const Cart = () => {
 
   const handleRemoveFromCart = async (productId) => {
     try {
-      const response = await fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/cart/${productId}/remove-from-cart`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/cart/${productId}/remove-from-cart`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const Cart = () => {
   
       // If user confirms, proceed to clear the cart
       if (result.isConfirmed) {
-        const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/cart/clear-cart', {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/cart/clear-cart`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/cart/get-cart', {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/cart/get-cart`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -138,7 +138,7 @@ const Cart = () => {
 
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products');
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/products`);
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }

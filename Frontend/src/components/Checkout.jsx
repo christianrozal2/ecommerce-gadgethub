@@ -12,7 +12,7 @@ const Checkout = ({ user }) => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/cart/get-cart', {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/cart/get-cart`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -34,7 +34,7 @@ const Checkout = ({ user }) => {
 
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products');
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/products`);
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
@@ -68,7 +68,7 @@ const Checkout = ({ user }) => {
     if (confirmCheckout.isConfirmed) {
       setLoading(true);
       try {
-        const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/order/checkout', {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/order/checkout`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

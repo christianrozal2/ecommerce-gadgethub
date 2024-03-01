@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import ProductCard from './ProductCard'; // Assuming this is where your ProductCard component is located
+import ProductCard from './ProductCard'; 
 
 export default function FeaturedProducts() {
     const [previews, setPreviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products/`)
+        console.log('Base URL:', import.meta.env.VITE_API_BASE_URL);
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/products/`)
             .then(res => res.json())
             .then(data => {
                 const numbers = [];

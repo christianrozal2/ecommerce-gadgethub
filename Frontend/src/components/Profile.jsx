@@ -32,7 +32,7 @@ export default function Profile() {
     };
 
     useEffect(() => {
-        fetch(`/http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/users/details`, {
+        fetch(`/${import.meta.env.VITE_API_BASE_URL}/users/details`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

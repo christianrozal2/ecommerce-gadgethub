@@ -10,7 +10,7 @@ const UpdateProfile = () => {
     const [userProfile, setUserProfile] = useState(null);
 
     const fetchProfile = async () => {
-        const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/users/details', {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/details`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const UpdateProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/users/details', {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/details`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

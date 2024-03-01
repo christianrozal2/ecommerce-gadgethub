@@ -28,7 +28,7 @@ export default function Register() {
 		// Prevents page redirection via form submission
 		e.preventDefault();
 
-		fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/users/', {
+		fetch(`${REACT_APP_API_BASE_URL}/users/`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

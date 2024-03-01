@@ -7,8 +7,8 @@ const Orders = ({ userId, isAdmin }) => {
     const fetchOrders = async () => {
       try {
         const response = await fetch(isAdmin
-          ? 'http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/order/all-orders'
-          : 'http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/order/my-orders', {
+          ? `${import.meta.env.VITE_API_BASE_URL}/order/all-orders`
+          : `${import.meta.env.VITE_API_BASE_URL}/order/my-orders`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await fetch('http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/users/update-password',{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/update-password`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

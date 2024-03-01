@@ -13,7 +13,7 @@ const EditProduct = ({ product, fetchData }) => {
 
     // Function for opening the modal
     const openEdit = (productId) => {
-        fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products/${productId}/`)
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${productId}/`)
         .then(res => res.json())
         .then(data => {
             setProductId(data.product._id);
@@ -37,7 +37,7 @@ const EditProduct = ({ product, fetchData }) => {
     const editProduct = (e, productId) => {
         e.preventDefault();
 
-        fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/products/${productId}/update`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${productId}/update`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

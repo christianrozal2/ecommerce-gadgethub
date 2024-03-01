@@ -19,6 +19,7 @@ import { features } from './constants/constants';
 import FeatureCard from './components/FeatureCard';
 import Checkout from './components/Checkout';
 
+
 export default function App() {
   const [user, setUser] = useState({
     id: null,
@@ -32,7 +33,7 @@ export default function App() {
 
   // Used to check if the user information is properly stored upon login and the localStorage information is cleared upon logout
   useEffect(() => {
-    fetch(`http://ec2-18-220-120-229.us-east-2.compute.amazonaws.com/b1/users/details`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/users/details`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
