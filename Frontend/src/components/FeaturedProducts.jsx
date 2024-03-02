@@ -5,7 +5,6 @@ export default function FeaturedProducts() {
     const [previews, setPreviews] = useState([]);
 
     useEffect(() => {
-        console.log('Base URL:', import.meta.env.VITE_API_BASE_URL);
         fetch(`${import.meta.env.VITE_API_BASE_URL}/products/`)
             .then(res => res.json())
             .then(data => {

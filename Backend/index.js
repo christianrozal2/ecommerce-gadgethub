@@ -31,7 +31,7 @@ mongoose.connect("mongodb+srv://christianrozal2:admin@cluster0.vgdpbcv.mongodb.n
 
 app.get("/", (req, res) => {
     console.log("Request received for root route '/'"); 
-    res.json("Hello")
+    res.json("Hello! This is the backend API for ecommerce-gadgethub.")
 })
 
 // [SECTION] Backend Routes
