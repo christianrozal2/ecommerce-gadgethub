@@ -30,7 +30,7 @@ export default function Login() {
                 Swal.fire({
                     title: 'Login Successful',
                     icon: 'success',
-                    text: 'Welcome to Zuitt!'
+                    text: 'Welcome to Gadget Hub!'
                 })
                 console.log(`ID: ${user._id}`)
             } else if (data.error === "No Email Found") {
