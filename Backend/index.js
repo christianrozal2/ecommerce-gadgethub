@@ -20,7 +20,7 @@ app.use(cors());
 
 // [SECTION] Database Connection
 
-mongoose.connect("mongodb+srv://christianrozal2:admin@cluster0.vgdpbcv.mongodb.net/E-Commerce-API-MVP?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_URI);
     .then(() => { 
         console.log("Database connected successfully");
 
