@@ -75,7 +75,7 @@ const ResetPassword = () => {
           />
         </div>
         {message && <div className="alert alert-danger">{message}</div>}
-        <Button label='Update Profile' onClick={handleResetPassword} className='mt-7' />
+        <Button label='Update Password' onClick={handleResetPassword} className='mt-7' />
       </form>
     </div>
   );

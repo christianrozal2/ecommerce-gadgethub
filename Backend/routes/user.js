@@ -26,6 +26,9 @@ router.put("/:userId/set-as-admin", verify, verifyAdmin, userController.updateUs
 // [SECTION] Update Password
 router.post('/update-password', verify, userController.updatePassword);
 
+// [SECTION] Update Profile
+router.put('/update-profile', verify, userController.updateProfile);
+
 
 
 

@@ -101,7 +101,7 @@ module.exports.updateUserAsAdmin = async (req, res) => {
 		return res.json({ message: "User updated as admin successfully." });
 	} catch (error) {
 		console.error("Error updating user as admin:", error);
-		return res.status(500).json({ message: "An error occurred while updating user as admin." });
+		return res.status(500).json({ error: "An error occurred while updating user as admin." });
 	}
 };
 
@@ -110,16 +110,51 @@ module.exports.updateUserAsAdmin = async (req, res) => {
 // [SECTION] Update password
 module.exports.updatePassword = async (req, res) => {
 	try {
-		const { newPassword } = req.body;
-		const { id } = req.user;
-		const hashedPassword = await bcrypt.hash(newPassword, 10);
-		await User.findByIdAndUpdate(id, { password: hashedPassword });
-		res.status(200).json({message: 'Password update successfully'});
+	  const { newPassword } = req.body;
+	  const { id } = req.user;
+  
+	  // Password Length Validation
+	  if (newPassword.length < 8) {
+		return res.status(400).send({ error: "Password must be atleast 8 characters" });
+	  }
+  
+	  // Hash the password
+	  const hashedPassword = await bcrypt.hash(newPassword, 10); 
+  
+	  // Update the user's password
+	  await User.findByIdAndUpdate(id, { password: hashedPassword });
+  
+	  res.status(200).json({ message: 'Password updated successfully' });
 	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: 'Internal Server error' });
+	  console.error(error);
+	  res.status(500).json({ error: 'Internal Server Error' });
 	}
-}
+  };
+
+
+
+// [SECTION] Update Profile
+module.exports.updateProfile = async (req, res) => {
+  try {
+    const { newFirstName, newLastName, newMobileNo } = req.body;
+    // Validation for mobile number
+    if (!/^\d{11}$/.test(newMobileNo)) {
+		return res.status(400).json({ message: 'Mobile number invalid' });
+	  }
+
+    // Database Interaction
+    const user = await User.findById(req.user.id); 
+    user.firstName = newFirstName;
+    user.lastName = newLastName;
+    user.mobileNo = newMobileNo;
+    await user.save();
+
+    res.status(200).json({ message: 'Profile updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 
 
