@@ -36,7 +36,8 @@ const Orders = ({ userId, isAdmin }) => {
     <div className="container px-0 mx-auto">
       <h2 className="text-2xl font-bold mb-10 border-b-2 pb-3">Order History</h2>
         <div className='flex flex-col gap-10'>
-          {orders.map((order) => (
+        {orders.sort((a, b) => new Date(b.orderedOn) - new Date(a.orderedOn)) // Sort in descending order
+         .map((order) => (
             <div key={order._id} className='pb-10 border-b-2 flex flex-col gap-5'>
               <h2 className="font-bold text-xl">Order {order._id}</h2>
               <p className='text-gray-700'>Order ID: {order._id}</p>
