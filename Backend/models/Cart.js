@@ -13,6 +13,10 @@ const cartSchema = new mongoose.Schema({
 				type: String,
 				required: [true, 'Product ID is Required']
 			},
+			name: {
+				type: String,
+				required: [true, 'Product Name is Required']
+			},
 			quantity: {
 				type: Number,
 				required: [true, 'Quantity is Required']

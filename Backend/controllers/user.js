@@ -115,7 +115,7 @@ module.exports.updatePassword = async (req, res) => {
   
 	  // Password Length Validation
 	  if (newPassword.length < 8) {
-		return res.status(400).send({ error: "Password must be atleast 8 characters" });
+		return res.status(400).send({ message: "Password must be atleast 8 characters" });
 	  }
   
 	  // Hash the password
@@ -127,7 +127,7 @@ module.exports.updatePassword = async (req, res) => {
 	  res.status(200).json({ message: 'Password updated successfully' });
 	} catch (error) {
 	  console.error(error);
-	  res.status(500).json({ error: 'Internal Server Error' });
+	  res.status(500).json({ message: 'Internal Server Error' });
 	}
   };
 
@@ -136,9 +136,11 @@ module.exports.updatePassword = async (req, res) => {
 // [SECTION] Update Profile
 module.exports.updateProfile = async (req, res) => {
   try {
+	console.log('Request Body:', req.body);
     const { newFirstName, newLastName, newMobileNo } = req.body;
+	
     // Validation for mobile number
-    if (!/^\d{11}$/.test(newMobileNo)) {
+    if (newMobileNo.length !== 11) {
 		return res.status(400).json({ message: 'Mobile number invalid' });
 	  }
 
@@ -152,7 +154,7 @@ module.exports.updateProfile = async (req, res) => {
     res.status(200).json({ message: 'Profile updated successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 

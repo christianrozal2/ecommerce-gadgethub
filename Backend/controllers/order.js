@@ -3,12 +3,12 @@ const bcrypt = require("bcrypt");
 const Cart = require("../models/Cart");
 const Order = require("../models/Order");
 const auth = require("../auth");
+const Product = require("../models/Product");
 
 
 // [SECTION] Create Order
 module.exports.createOrder = async (req, res) => {
     try {
-      // 3. Find user's cart
       const cart = await Cart.findOne({ userId: req.user.id }); // Assuming 'req.user.id' comes from JWT data
   
       if (!cart) {
@@ -20,12 +20,27 @@ module.exports.createOrder = async (req, res) => {
         return res.status(400).json({ message: 'Cart is empty' });
       }
   
-      // 5a. Create new Order document
-      const newOrder = new Order({
-        userId: req.user.id,
-        productsOrdered: cart.cartItems,
-        totalPrice: cart.totalPrice
-      });
+    const newOrder = new Order({
+      userId: req.user.id,
+      productsOrdered: [], // Start with an empty array
+      totalPrice: cart.totalPrice 
+    });
+
+     // Fetch Product Details and Update productsOrdered
+        for (const item of cart.cartItems) {
+            const product = await Product.findById(item.productId);
+
+            if (!product) {
+                return res.status(400).json({ message: `Product with ID ${item.productId} not found` });
+            }
+
+            newOrder.productsOrdered.push({
+                productId: product._id,
+                name: product.name,
+                quantity: item.quantity,
+                subtotal: product.price * item.quantity
+            });
+        }
   
       // 6. Save Order document
       const savedOrder = await newOrder.save();

@@ -179,7 +179,7 @@ const Cart = () => {
                 <h2 className='font-semibold text-gray-700 col-span-2'>Products</h2>
                 <h2 className='font-semibold text-gray-700'>Quantity</h2>
                 <h2 className='font-semibold text-gray-700'>Subtotal</h2>
-              </div>
+              </div>  
               {cartItems.map((item) => (
                 <div key={item._id} className="grid grid-cols-4 mt-5 gap-10">
                   <div className='flex gap-3 col-span-2'>
@@ -188,7 +188,7 @@ const Cart = () => {
                     </div>
                     <div className='truncate flex flex-col justify-center'>
                       <Link to={`/products/${item.productId}`}>
-                        <p className='font-bold truncate hover:text-gray-400'>{products[item.productId]?.name}</p>
+                        <p className='font-bold truncate hover:text-gray-400'>{item.name}</p>
                       </Link>
                       <p>₱{products[item.productId]?.price}.00</p>
                     </div>

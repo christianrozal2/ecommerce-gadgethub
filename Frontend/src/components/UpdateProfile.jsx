@@ -1,63 +1,67 @@
 import React, { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
 import Button from './Button'
 
 
-const UpdateProfile = () => {
+const UpdateProfile = ({setDetails}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [mobileNo, setMobileNo] = useState('');
-    const [userProfile, setUserProfile] = useState(null);
+    const [message, setMessage] = useState('');
 
-    const fetchProfile = async () => {
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/details`, {
-          method: 'GET',
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      // Check if all fields are filled in
+      if (!firstName || !lastName || !mobileNo) { 
+        setMessage('Please fill in all fields');
+        return;
+     }
+
+      // Check if mobile number meets length requirement
+      if (mobileNo.length !== 11) {
+        setMessage('Mobile number invalid');
+        return;
+      }
+      
+    
+      try {
+        console.log('Mobile number submitted:', mobileNo);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/update-profile`, {
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
+          body: JSON.stringify({
+            newFirstName: firstName,
+            newLastName: lastName,
+            newMobileNo: mobileNo
+          })
         });
     
-        const data = await response.json();
-        console.log('User Data: ', data)
-    
         if (response.ok) {
-          setUserProfile(data);
+          setMessage('Profile updated successfully');
+          setFirstName('');
+          setLastName('');
+          setMobileNo('');
+
+          // Update details in Profile component
+          setDetails((prevDetails) => ({
+            ...prevDetails,
+            firstName: firstName, 
+            lastName: lastName
+        })); 
+
         } else {
-          console.error(`Error: ${data.message}`);
+          const errorData = await response.json();
+          setMessage(errorData.message);
         }
-      };
-
-      useEffect(() => {
-        fetchProfile();
-      }, []);
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/details`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify({
-                firstName,
-                lastName,
-                mobileNo
-            })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-      Swal.fire('Success', 'Profile updated successfully', 'success');
-      fetchProfile(); // Fetch the updated profile here
-    } else {
-      Swal.fire('Error', `Error: ${data.message}`, 'error');
-    }
+      } catch (error) {
+        setMessage('An error occurred. Please try again.');
+        console.error(error);
+      }
     };
+      
 
     return (
         <div className=''>
@@ -96,6 +100,17 @@ const UpdateProfile = () => {
                         onChange={(e) => setMobileNo(e.target.value)}
                     />
                 </div>
+                {message && (
+                  <div
+                    className={`mt-7 p-4 rounded ${
+                      message.includes('success')
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-red-100 text-red-800'
+                    }`}
+                  >
+                    {message}
+                  </div>
+                )}
                 <Button label='Update Profile' onClick={handleSubmit} className='mt-7' />
             </form>
         </div>

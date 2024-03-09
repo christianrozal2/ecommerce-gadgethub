@@ -22,7 +22,7 @@ const ResetPassword = () => {
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/update-password`,{
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -31,7 +31,7 @@ const ResetPassword = () => {
       });
 
       if (response.ok) {
-        setMessage('Password reset successfully');
+        setMessage('Password updated successfully');
         setPassword('');
         setConfirmPassword('');
       } else {
@@ -74,7 +74,17 @@ const ResetPassword = () => {
             required
           />
         </div>
-        {message && <div className="alert alert-danger">{message}</div>}
+        {message && (
+          <div
+            className={`mt-7 p-4 rounded ${
+              message.includes('success')
+                ? 'bg-green-100 text-green-800'
+                : 'bg-red-100 text-red-800'
+            }`}
+          >
+            {message}
+          </div>
+        )}
         <Button label='Update Password' onClick={handleResetPassword} className='mt-7' />
       </form>
     </div>

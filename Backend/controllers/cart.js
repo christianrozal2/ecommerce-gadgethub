@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const Cart = require("../models/Cart");
 const auth = require("../auth");
 const User = require("../models/User");
+const Product = require("../models/Product");
 
 
 
@@ -30,26 +31,37 @@ module.exports.getCart = async (req, res) => {
 // [SECTION] Add product to cart
 module.exports.addToCart = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const { productId, quantity, subtotal } = req.body;
+      const userId = req.user.id;
+      const { productId, quantity, subtotal } = req.body;
 
-    // Find the user's cart (create if it doesn't exist)
-    let cart = await Cart.findOne({ userId }); // Pass userId directly
-    if (!cart) {
-      cart = new Cart({ userId }); // Pass userId directly
-    }
+      // Find the user's cart (create if it doesn't exist)
+      let cart = await Cart.findOne({ userId }); 
+      if (!cart) {
+          cart = new Cart({ userId }); 
+      }
 
-    // Check if product already exists in cart
-    const existingItem = cart.cartItems.find((item) => item.productId.toString() === productId); 
+      // Fetch product details
+      const product = await Product.findById(productId);
+      if (!product) {
+          return res.status(404).json({ message: 'Product not found' });
+      }
 
-    if (existingItem) {
-      // Update quantity and subtotal
-      existingItem.quantity += quantity;
-      existingItem.subtotal += subtotal;
-    } else {
-      // Add new product item
-      cart.cartItems.push({ productId, quantity, subtotal });
-    }
+      // Check if product already exists in cart
+      const existingItem = cart.cartItems.find((item) => item.productId.toString() === productId); 
+
+      if (existingItem) {
+          // Update quantity and subtotal
+          existingItem.quantity += quantity;
+          existingItem.subtotal += subtotal;
+      } else {
+          // Add new product item
+          cart.cartItems.push({ 
+              productId, 
+              quantity, 
+              subtotal,
+              name: product.name,
+          });
+      }
 
     // Update total price
     cart.totalPrice = cart.cartItems.reduce((acc, item) => acc + item.subtotal, 0);
@@ -59,7 +71,7 @@ module.exports.addToCart = async (req, res) => {
 
     res.json({ message: 'Product added to cart', cart });
   } catch (error) {
-    console.error(error); 
+    console.error('Error Details:', error);
     res.status(500).json({ message: 'Error adding product to cart', error: error.message });
   }
 };

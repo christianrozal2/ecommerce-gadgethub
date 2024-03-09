@@ -31,8 +31,9 @@ export default function Profile() {
         });
     };
 
+    
     useEffect(() => {
-        fetch(`/${import.meta.env.VITE_API_BASE_URL}/users/details`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/users/details`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -70,8 +71,8 @@ export default function Profile() {
                         <div className='flex gap-5'>
                             <img src={profile} alt="profile" />
                             <div className='flex flex-col justify-center'>
-                                <p className='font-bold'>Taylor Swift</p>
-                                <p>taylor@mail.com</p>
+                                <p className='font-bold'>{details.firstName} {details.lastName}</p> 
+                                <p>{details.email}</p> 
                             </div>
                         </div>
                         <button className='flex gap-5' onClick={() => { setShowUpdateProfile(true); setShowResetPassword(false); setShowOrders(false); }}>
@@ -92,7 +93,7 @@ export default function Profile() {
                         </button>
                     </div>
                     <div className='w-[70%] mt-10'>
-                        {showUpdateProfile && <UpdateProfile />}
+                        {showUpdateProfile && <UpdateProfile setDetails={setDetails} />}
                         {showResetPassword && <ResetPassword />}
                         {showOrders && <Orders />}
                     </div>
