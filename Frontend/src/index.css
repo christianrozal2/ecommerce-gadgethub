@@ -37,7 +37,7 @@ body {
 .backgroundImage2 {
   background-image: url('./assets/hero.png');
   background-size: cover;
-  background-position: center;
+  background-position: left;
 }
 
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import ProductSearch from './ProductSearch';
-import ProductSearchByPrice from './ProductSearchByPrice';
 
 
 export default function UserView({productsData}) {
@@ -30,7 +29,6 @@ export default function UserView({productsData}) {
 	return(
 		<div className='container px-0'>
 			<ProductSearch products={products} />
-			{/* <ProductSearchByPrice /> */}
 		</div>
 		)
 }

@@ -36,7 +36,7 @@ export default function FeaturedProducts() {
 
     return (
         <>
-            <div className="grid grid-cols-4 gap-7"> {/* Tailwind CSS grid */}
+            <div className="grid sm:grid-cols-4 grid-cols-2 sm:gap-7 gap-4">
                 {previews}
             </div>
         </>

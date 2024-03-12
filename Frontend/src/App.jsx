@@ -15,9 +15,8 @@ import ProductView from './pages/ProductView';
 import Cart from './components/Cart';
 import Orders from './components/Orders';
 import Footer from './components/Footer';
-import { features } from './constants/constants';
-import FeatureCard from './components/FeatureCard';
 import Checkout from './components/Checkout';
+import Features from './components/Features';
 
 
 export default function App() {
@@ -64,11 +63,11 @@ export default function App() {
   return (
     <UserProvider value={{ user, setUser, unsetUser }}>
       <Router>
-        <div className="flex flex-col min-h-screen">
-          <div>
+        <div id='top' className="flex flex-col min-h-screen">
+          <div className='md:px-14 sm:px-12 px-6'>
             <Navbar />
           </div>
-          <div className="flex-grow">
+          <div className="flex-grow md:px-14 sm:px-12 px-6">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
@@ -85,15 +84,7 @@ export default function App() {
             </Routes>
           </div>
 
-          <div className='mt-36'>
-            <div className='container px-0 py-20'>
-              <div className='flex justify-between'>
-                {features.map ((index) =>
-                  <FeatureCard key={index.id} card={index} />
-                )}
-              </div>
-            </div>
-          </div>
+          <Features />
           <div className="bg-black p-5">
             <Footer />
           </div>

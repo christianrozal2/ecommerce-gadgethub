@@ -1,4 +1,6 @@
 export { default as logo } from './logo.svg'
+export { default as menu } from './menu.svg'
+export { default as close2 } from './close.svg'
 export { default as reg } from './reg.jpg'
 export { default as log } from './log.jpg'
 export { default as p1 } from './p1.png'
@@ -18,4 +20,8 @@ export { default as profile } from './profile.svg'
 export { default as logout } from './logout.svg'
 export { default as user1 } from './user.svg'
 export { default as pass } from './pass.png'
+export { default as top } from './top.svg'
+export { default as upArrow } from './upArrow.svg'
+export { default as downArrow } from './downArrow.svg'
+
 
