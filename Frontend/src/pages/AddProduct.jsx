@@ -69,7 +69,7 @@ export default function AddProduct() {
   }
 
   return user.isAdmin === true ? (
-    <>
+    <div className="flex-grow md:px-14 sm:px-12 px-6">
       <Button label='+ Add Product' onClick={openAdd}>+ Add Product</Button>
 
       {/* ADD MODAL */}
@@ -143,7 +143,7 @@ export default function AddProduct() {
           </div>
         </div>
       }
-    </>
+    </div>
   ) : (
     // Authorization Handling
     <div className="container mx-auto p-4 text-center">

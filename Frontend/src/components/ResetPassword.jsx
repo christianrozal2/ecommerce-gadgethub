@@ -48,7 +48,7 @@ const ResetPassword = () => {
     <div className="">
       <h2 className='text-2xl font-bold'>Reset Password</h2>
       <form>
-        <div className="flex flex-col mt-10">
+        <div className="flex flex-col md:mt-10 mt-5">
           <label htmlFor="password">
             New Password
           </label>

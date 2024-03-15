@@ -63,14 +63,14 @@ export default function App() {
   return (
     <UserProvider value={{ user, setUser, unsetUser }}>
       <Router>
-        <div id='top' className="flex flex-col min-h-screen">
+        <div id='top' className="flex flex-col min-h-screen sm:text-base text-sm">
           <div className='md:px-14 sm:px-12 px-6'>
             <Navbar />
           </div>
-          <div className="flex-grow md:px-14 sm:px-12 px-6">
+          <div>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/register" element={<Register />}/>
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/products" element={<Products />} />

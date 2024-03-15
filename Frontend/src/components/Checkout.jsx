@@ -103,53 +103,55 @@ const Checkout = ({ user }) => {
   const totalPrice = cartItems.reduce((total, item) => total + item.subtotal, 0);
 
   return (
-    <div className='container px-0 mt-20'>
-      <h2 className="text-3xl font-bold">Checkout</h2>
+    <div className="flex-grow md:px-14 sm:px-12 px-6">
+      <div className='container px-0 lg:mt-20 sm:mt-16 mt-12'>
+        <h2 className="text-3xl font-bold">Checkout</h2>
 
-      <div className='grid grid-cols-4 mt-10 pb-3 gap-10'>
-        <h2 className='font-semibold text-gray-700 col-span-2'>Products</h2>
-        <h2 className='font-semibold text-gray-700 text-right'>Quantity</h2>
-        <h2 className='font-semibold text-gray-700 text-right'>Subtotal</h2>
-      </div>
-
-      {cartItems.map((item) => (
-        <div key={item._id} className="grid grid-cols-4 mt-5 gap-10">
-          <div className='flex gap-3 col-span-2'>
-            <div className='bg-container p-4'>
-              <img src={p1} alt="product" className='w-10 min-w-10'/>
-            </div>
-            <div className='truncate'>
-              <p className='font-bold truncate hover:text-gray-400'>{products[item.productId]?.name}</p>
-              <p>₱{products[item.productId]?.price}.00</p>
-            </div>
-          </div>
-          <div className='text-right'>  
-            <p>x{item.quantity}</p>  
-          </div>   
-          <div className='text-right'>
-            <p>₱{item.subtotal}.00</p>
-          </div>
+        <div className='grid grid-cols-4 mt-10 pb-3 sm:gap-10 gap-5'>
+          <h2 className='font-semibold text-gray-700 col-span-2'>Products</h2>
+          <h2 className='font-semibold text-gray-700 text-right'>Quantity</h2>
+          <h2 className='font-semibold text-gray-700 text-right'>Subtotal</h2>
         </div>
-      ))}
 
-      <div className='flex justify-between font-bold bg-container p-5 mt-10'>
-        <p>Order Total</p>
-        <p>₱{totalPrice}.00</p>
-      </div>
-        
-      <div className='flex gap-5 justify-end mt-10'>
-        <Link to='/cart'>
-          <button className="bg-white border-2 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md">
-            Back to cart
+        {cartItems.map((item) => (
+          <div key={item._id} className="grid grid-cols-4 mt-5 sm:gap-10 gap-5">
+            <div className='flex gap-3 col-span-2'>
+              <div className='bg-container sm:p-4 p-1'>
+                <img src={p1} alt="product" className='w-10 min-w-10'/>
+              </div>
+              <div className='truncate'>
+                <p className='font-bold truncate hover:text-gray-400'>{products[item.productId]?.name}</p>
+                <p>₱{products[item.productId]?.price}.00</p>
+              </div>
+            </div>
+            <div className='text-right'>  
+              <p>x{item.quantity}</p>  
+            </div>   
+            <div className='text-right'>
+              <p>₱{item.subtotal}.00</p>
+            </div>
+          </div>
+        ))}
+
+        <div className='flex justify-between font-bold bg-container p-5 mt-10'>
+          <p>Order Total</p>
+          <p>₱{totalPrice}.00</p>
+        </div>
+          
+        <div className='flex gap-5 sm:justify-end mt-10'>
+          <Link to='/cart'>
+            <button className="bg-white border-2 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md">
+              Back to cart
+            </button>
+          </Link>
+          <button
+            className="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-md"
+            onClick={handleCheckout}
+            disabled={loading}
+          >
+            {loading ? 'Processing...' : 'Checkout'}
           </button>
-         </Link>
-        <button
-          className="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-md"
-          onClick={handleCheckout}
-          disabled={loading}
-        >
-          {loading ? 'Processing...' : 'Checkout'}
-        </button>
+        </div>
       </div>
     </div>
   );

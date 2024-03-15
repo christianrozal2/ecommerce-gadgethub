@@ -64,38 +64,40 @@ export default function Profile() {
         (user.id === null) ?
             <Navigate to="/" />
             :
-            <div className='container px-0 mt-20'>
-                <h2 className='text-3xl font-bold'>My Profile</h2>
-                <div className='flex gap-20'>
-                    <div className='flex flex-col gap-12 border p-5 rounded-md w-[30%] mt-10 text-lg'>
-                        <div className='flex gap-5'>
-                            <img src={profile} alt="profile" />
-                            <div className='flex flex-col justify-center'>
-                                <p className='font-bold'>{details.firstName} {details.lastName}</p> 
-                                <p>{details.email}</p> 
+            <div className="flex-grow md:px-14 sm:px-12 px-6">
+                <div className='container px-0 lg:mt-20 sm:mt-16 mt-12'>
+                    <h2 className='sm:text-3xl text-2xl font-bold sm:text-left text-center'>My Profile</h2>
+                    <div className='flex sm:flex-row flex-col md:gap-20 gap-10'>
+                        <div className='flex flex-col md:gap-12 gap-10 border p-5 rounded-md sm:w-[30%] sm:mt-10 mt-5 sm:text-lg overflow-hidden'>
+                            <div className='flex md:gap-5 sm:gap-2 gap-5 items-center'>
+                                <img src={profile} alt="profile" className='size-12'/>
+                                <div className='flex flex-col justify-center'>
+                                    <p className='font-bold'>{details.firstName} {details.lastName}</p> 
+                                    <p>{details.email}</p> 
+                                </div>
                             </div>
+                            <button className='flex gap-5' onClick={() => { setShowUpdateProfile(true); setShowResetPassword(false); setShowOrders(false); }}>
+                                <img src={user1} alt="user1" />
+                                <p className='text-left'>Personal Information</p>
+                            </button>
+                            <button className='flex gap-5' onClick={() => { setShowResetPassword(true); setShowUpdateProfile(false); setShowOrders(false); }}>
+                                <img src={pass} alt="password" className='size-5'/>
+                                <p className='text-left'>Reset Password</p>
+                            </button>
+                            <button className='flex gap-5' onClick={() => { setShowOrders(true); setShowUpdateProfile(false); setShowResetPassword(false); }}>
+                                <img src={feat1} alt="orders" />
+                                <p className='text-left'>My Orders</p>
+                            </button>
+                            <button className='flex gap-5' onClick={handleLogout}>
+                                <img src={logout} alt="logout" />
+                                <p className='text-left'>Logout</p>
+                            </button>
                         </div>
-                        <button className='flex gap-5' onClick={() => { setShowUpdateProfile(true); setShowResetPassword(false); setShowOrders(false); }}>
-                            <img src={user1} alt="user1" />
-                            <p>Personal Information</p>
-                        </button>
-                        <button className='flex gap-5' onClick={() => { setShowResetPassword(true); setShowUpdateProfile(false); setShowOrders(false); }}>
-                            <img src={pass} alt="password" className='size-5'/>
-                            <p>Reset Password</p>
-                        </button>
-                        <button className='flex gap-5' onClick={() => { setShowOrders(true); setShowUpdateProfile(false); setShowResetPassword(false); }}>
-                            <img src={feat1} alt="orders" />
-                            <p>My Orders</p>
-                        </button>
-                        <button className='flex gap-5' onClick={handleLogout}>
-                            <img src={logout} alt="logout" />
-                            <p>Logout</p>
-                        </button>
-                    </div>
-                    <div className='w-[70%] mt-10'>
-                        {showUpdateProfile && <UpdateProfile setDetails={setDetails} />}
-                        {showResetPassword && <ResetPassword />}
-                        {showOrders && <Orders />}
+                        <div className='sm:w-[70%] sm:mt-10'>
+                            {showUpdateProfile && <UpdateProfile setDetails={setDetails} />}
+                            {showResetPassword && <ResetPassword />}
+                            {showOrders && <Orders />}
+                        </div>
                     </div>
                 </div>
             </div>

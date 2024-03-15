@@ -49,7 +49,7 @@ export default function Products(){
 	}, [])
 
 	return(
-		<>
+		<div className="flex-grow md:px-14 sm:px-12 px-6">
 			{
 				(user.isAdmin === true) ?
 					// Pass the fetchData as a props
@@ -59,6 +59,6 @@ export default function Products(){
 
 					<UserView productsData={products} />
 			}
-		</>
+		</div>
 		)
 }

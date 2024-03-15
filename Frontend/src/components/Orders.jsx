@@ -33,33 +33,35 @@ const Orders = ({ userId, isAdmin }) => {
   }, [userId, isAdmin]);
 
   return (
-    <div className="container px-0 mx-auto">
-      <h2 className="text-2xl font-bold mb-10 border-b-2 pb-3">Order History</h2>
-        <div className='flex flex-col gap-10'>
-        {orders.sort((a, b) => new Date(b.orderedOn) - new Date(a.orderedOn)) // Sort in descending order
-         .map((order) => (
-            <div key={order._id} className='pb-10 border-b-2 flex flex-col gap-5'>
-              <h2 className="font-bold text-xl">Order {order._id}</h2>
-              <p className='text-gray-700'>Order ID: {order._id}</p>
-              <p className='text-gray-700'>Ordered On: {order.orderedOn}</p>
-                <div>
-                  {order.productsOrdered.map((product) => (
-                    <div key={product.productId}>
-                      <Link to={`/products/${product.productId}`} className='flex gap-10 items-center hover:bg-container p-4'>
-                        <img src={p1} alt='p1' className='size-24'/>
-                        <div>
-                          <p className='font-bold'>{product.name}</p>
-                          <p className='text-gray-700'>Quantity: {product.quantity}</p>
-                          <p className='text-gray-700'>Subtotal: ₱{product.subtotal}.00</p>
-                        </div>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-                 <h3 className='font-bold text-lg text-end'>Total: ₱{order.totalPrice}.00</h3>
-            </div>
-          ))}
-        </div>
+    <div className="flex-grow md:px-14 sm:px-12 px-6">
+      <div className="container px-0 mx-auto sm:text-base text-sm">
+        <h2 className="text-2xl font-bold mb-10 border-b-2 pb-3">Order History</h2>
+          <div className='flex flex-col gap-10'>
+          {orders.sort((a, b) => new Date(b.orderedOn) - new Date(a.orderedOn)) // Sort in descending order
+          .map((order) => (
+              <div key={order._id} className='pb-10 border-b-2 flex flex-col gap-5'>
+                <h2 className="font-bold sm:text-xl text-base">Order {order._id}</h2>
+                <p className='text-gray-700'>Order ID: {order._id}</p>
+                <p className='text-gray-700'>Ordered On: {order.orderedOn}</p>
+                  <div>
+                    {order.productsOrdered.map((product) => (
+                      <div key={product.productId}>
+                        <Link to={`/products/${product.productId}`} className='flex gap-10 items-center hover:bg-container p-4'>
+                          <img src={p1} alt='p1' className='sm:size-24 size-16'/>
+                          <div>
+                            <p className='font-bold'>{product.name}</p>
+                            <p className='text-gray-700'>Quantity: {product.quantity}</p>
+                            <p className='text-gray-700'>Subtotal: ₱{product.subtotal}.00</p>
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                  <h3 className='font-bold sm:text-lg text-base text-end'>Total: ₱{order.totalPrice}.00</h3>
+              </div>
+            ))}
+          </div>
+      </div>
     </div>
   );
 };

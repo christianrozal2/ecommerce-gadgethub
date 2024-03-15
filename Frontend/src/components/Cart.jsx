@@ -161,101 +161,103 @@ const Cart = () => {
   }, []);
 
   return (
-    <div className='container px-0 mt-20'>
-      <div className="">
-        <h1 className="text-3xl font-bold mb-4">Shopping Cart</h1>
-        {user && (
-          <div className="mb-4">
-            <p>User: {user.firstName} {user.lastName}</p>
-            <p>Email: {user.email}</p>
-          </div>
-        )}
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <div className='flex gap-10'>
-            <div className='w-[70%]'>
-              <div className='grid grid-cols-4 mt-10 border-b pb-3 gap-10'>
-                <h2 className='font-semibold text-gray-700 col-span-2'>Products</h2>
-                <h2 className='font-semibold text-gray-700'>Quantity</h2>
-                <h2 className='font-semibold text-gray-700'>Subtotal</h2>
-              </div>  
-              {cartItems.map((item) => (
-                <div key={item._id} className="grid grid-cols-4 mt-5 gap-10">
-                  <div className='flex gap-3 col-span-2'>
-                    <div className='bg-container p-4'>
-                      <img src={p1} alt="p1" className='w-10 min-w-10'/>
-                    </div>
-                    <div className='truncate flex flex-col justify-center'>
-                      <Link to={`/products/${item.productId}`}>
-                        <p className='font-bold truncate hover:text-gray-400'>{item.name}</p>
-                      </Link>
-                      <p>₱{products[item.productId]?.price}.00</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className='flex gap-5 items-center border rounded-md'>
-                      <button className='px-3 py-1 text-2xl' onClick={() => handleQuantityChange(item._id, item.quantity - 1)} disabled={item.quantity === 1}>-</button>
-                      <span>{item.quantity}</span>
-                      <button className='px-3 py-1 text-lg' onClick={() => handleQuantityChange(item._id, item.quantity + 1)}>+</button>
-                    </div>
-                  </div>
-                  <div className='flex items-center justify-between mr-5'>
-                    <p>₱{item.subtotal}.00</p>
-                    <button className="cursor-pointer" onClick={() => handleRemoveFromCart(item.productId)}>
-                      <img src={del} alt="del" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-              
+    <div className="flex-grow md:px-14 sm:px-12 px-6">
+      <div className='container px-0 lg:mt-20 sm:mt-16 mt-12'>
+        <div className="">
+          <h1 className="sm:text-3xl text-2xl font-bold mb-4">Shopping Cart</h1>
+          {user && (
+            <div className="mb-4">
+              <p>User: {user.firstName} {user.lastName}</p>
+              <p>Email: {user.email}</p>
             </div>
-
-            <div className='w-[30%]'>
-              <div className='border rounded-md p-5 mt-10'>
-                <p className='font-bold border-b pb-5'>Summary</p>
-                <div className='flex justify-between mt-5 border-b pb-5'>
-                  <p>Total Price</p>
-                  <p>₱{totalPrice.toFixed(2)}</p>
-                </div>
-                <div className='flex justify-between mt-5 border-b pb-5'>
-                  <p>Shipping Fee</p>
-                  <p>₱0.00</p>
-                </div>
-                <div className='flex justify-between mt-5'>
-                  <p className='font-bold'>Grand Total</p>
-                  <p className='font-bold'>₱{(totalPrice + 0).toFixed(2)}</p>
-                </div>
-              </div>
-
-              <div className='mt-5'>
-                <Link to='/checkout'>
-                  <Button label='Proceed to Checkout' className='w-full'/>
-                </Link>
-              </div>
-            </div>
-          </div>
-          
-        )}
-      </div>
+          )}
+          {cartItems.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <div className='flex md:flex-row flex-col gap-10'>
+              <div className='md:w-[70%]'>
+                <div className='grid grid-cols-4 mt-10 border-b pb-3 sm:gap-10 gap-3'>
+                  <h2 className='font-semibold text-gray-700 col-span-2'>Products</h2>
+                  <h2 className='font-semibold text-gray-700'>Quantity</h2>
+                  <h2 className='font-semibold text-gray-700'>Subtotal</h2>
+                </div>  
+                {cartItems.map((item) => (
+                  <div key={item._id} className="grid grid-cols-4 mt-5 sm:gap-10 gap-3">
+                    <div className='flex gap-3 col-span-2'>
+                      <div className='bg-container sm:p-4 p-1'>
+                        <img src={p1} alt="p1" className='w-10 min-w-10'/>
+                      </div>
+                      <div className='truncate flex flex-col justify-center'>
+                        <Link to={`/products/${item.productId}`}>
+                          <p className='font-bold truncate hover:text-gray-400'>{item.name}</p>
+                        </Link>
+                        <p>₱{products[item.productId]?.price}.00</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <div className='flex sm:gap-5 items-center border rounded-md'>
+                        <button className='sm:px-3 px-2 sm:py-1 text-2xl' onClick={() => handleQuantityChange(item._id, item.quantity - 1)} disabled={item.quantity === 1}>-</button>
+                        <span>{item.quantity}</span>
+                        <button className='sm:px-3 px-2 sm:py-1 text-lg' onClick={() => handleQuantityChange(item._id, item.quantity + 1)}>+</button>
+                      </div>
+                    </div>
+                    <div className='flex items-center justify-between mr-5'>
+                      <p>₱{item.subtotal}.00</p>
+                      <button className="cursor-pointer" onClick={() => handleRemoveFromCart(item.productId)}>
+                        <img src={del} alt="del" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
                 
-      {cartItems.length > 0 && (
-        <button className="bg-white border-2 hover:bg-gray-300 text-gray-700 font-semibold 
-        py-2 px-4 rounded mt-10 flex gap-2 items-center" onClick={handleClearCart}>
-          Clear Cart
-          <img src={close1} alt="clear" className='size-3' />
-        </button>
-      )}
+              </div>
 
-      <div className='bg-container p-10 flex gap-10 justify-between mt-36 rounded-md'>
-        <div className='w-[70%]'>
-          <h2 className='text-3xl'>Continue Shopping</h2>
-          <p className='mt-5'>Discover more products in our vast selection of cutting-edge gadgets, innovative smart home devices, stylish accessories, and premium electronics, catering to every tech enthusiast's needs and desires.</p>
+              <div className='md:w-[30%]'>
+                <div className='border rounded-md p-5 mt-10'>
+                  <p className='font-bold border-b pb-5'>Summary</p>
+                  <div className='flex justify-between mt-5 border-b pb-5'>
+                    <p>Total Price</p>
+                    <p>₱{totalPrice.toFixed(2)}</p>
+                  </div>
+                  <div className='flex justify-between mt-5 border-b pb-5'>
+                    <p>Shipping Fee</p>
+                    <p>₱0.00</p>
+                  </div>
+                  <div className='flex justify-between mt-5'>
+                    <p className='font-bold'>Grand Total</p>
+                    <p className='font-bold'>₱{(totalPrice + 0).toFixed(2)}</p>
+                  </div>
+                </div>
+
+                <div className='mt-5'>
+                  <Link to='/checkout'>
+                    <Button label='Proceed to Checkout' className='w-full'/>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            
+          )}
         </div>
-        <div className='flex items-center'>
-          <Link to='/products'>
-            <Button label='Continue Shopping' />
-          </Link>
+                  
+        {cartItems.length > 0 && (
+          <button className="bg-white border-2 hover:bg-gray-300 text-gray-700 font-semibold 
+          py-2 px-4 rounded mt-10 flex gap-2 items-center" onClick={handleClearCart}>
+            Clear Cart
+            <img src={close1} alt="clear" className='size-3' />
+          </button>
+        )}
+
+        <div className='bg-container p-10 flex sm:flex-row flex-col sm:gap-10 gap-5 justify-between lg:mt-36 md:mt-28 sm:mt-24 mt-16 rounded-md'>
+          <div className='sm:w-[70%]'>
+            <h2 className='sm:text-3xl text-2xl'>Continue Shopping</h2>
+            <p className='mt-5'>Discover more products in our vast selection of cutting-edge gadgets, innovative smart home devices, stylish accessories, and premium electronics, catering to every tech enthusiast's needs and desires.</p>
+          </div>
+          <div className='flex items-center'>
+            <Link to='/products'>
+              <Button label='Continue Shopping' />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

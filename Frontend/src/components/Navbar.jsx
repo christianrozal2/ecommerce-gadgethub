@@ -14,10 +14,6 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    if (location.pathname === "/register" || location.pathname === "/login") {
-        return null;
-    }
-
     return (
         <div className='container relative px-0 flex items-center justify-between py-4 font-semibold text-gray-700'>
             <div>

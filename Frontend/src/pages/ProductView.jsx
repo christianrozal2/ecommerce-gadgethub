@@ -90,46 +90,48 @@ const ProductView = () => {
     }, [productId])
 
     return (
-        <div className="container px-0 mt-20">
-            <div className="flex gap-10">
-                <div className="w-[50%] bg-container flex items-center justify-center">
-                    <img src={p1} alt="p1" className="max-w-xs" />
-                </div>
-                <div className="w-[50%]">
-                    <div className="">
+        <div className="flex-grow md:px-14 sm:px-12 px-6">
+            <div className="container px-0 lg:mt-20 sm:mt-16 mt-12">
+                <div className="flex sm:flex-row flex-col gap-10">
+                    <div className="sm:w-[50%] bg-container flex items-center justify-center sm:p-0 p-5">
+                        <img src={p1} alt="p1" className="sm:max-w-xs" />
+                    </div>
+                    <div className="sm:w-[50%]">
                         <div className="">
-                            <h2 className="text-4xl font-bold">{name}</h2>
-                            <p className="text-green-600 mt-4">In Stock</p>
-                            <p className="text-gray-700 mt-4">{description}</p>
-                            <p className="text-lg mt-4">₱{price}.00</p>
-                            
-                            <div className="mt-4">
-                                <label className="block text-gray-700 text-sm font-bold mb-2">Quantity:</label>
-                                <div className="flex">
-                                    <button className="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-l hover:bg-gray-400" onClick={decrementQuantity}>-</button>
-                                    <input
-                                        className="border py-2 px-3 text-gray-700 w-12 text-center custom-number-input"
-                                        type="number"
-                                        min="1"
-                                        value={quantity}
-                                        onChange={(e) => setQuantity(parseInt(e.target.value))}
-                                    />
-                                    <button className="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-r hover:bg-gray-400" onClick={incrementQuantity}>+</button>
+                            <div className="">
+                                <h2 className="lg:text-4xl md:text-3xl sm:text-2xl text-xl font-bold">{name}</h2>
+                                <p className="text-green-600 mt-4">In Stock</p>
+                                <p className="text-gray-700 mt-4">{description}</p>
+                                <p className="sm:text-lg mt-4">₱{price}.00</p>
+                                
+                                <div className="mt-4">
+                                    <label className="block text-gray-700 text-sm font-bold mb-2">Quantity:</label>
+                                    <div className="flex">
+                                        <button className="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-l hover:bg-gray-400" onClick={decrementQuantity}>-</button>
+                                        <input
+                                            className="border py-2 px-3 text-gray-700 w-12 text-center custom-number-input"
+                                            type="number"
+                                            min="1"
+                                            value={quantity}
+                                            onChange={(e) => setQuantity(parseInt(e.target.value))}
+                                        />
+                                        <button className="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-r hover:bg-gray-400" onClick={incrementQuantity}>+</button>
+                                    </div>
                                 </div>
+                                <p className="text-gray-700 sm:text-lg mt-4 font-semibold">Subtotal: ₱{subtotal}.00</p> {/* Render subtotal */}
+                                { user.id !== null ?
+                                    <button className="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded w-full mt-4" onClick={addToCart}>Add to Cart</button> :
+                                    <Link to="/login" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">Login to buy</Link>
+                                }
                             </div>
-                            <p className="text-gray-700 text-lg mt-4 font-semibold">Subtotal: ₱{subtotal}.00</p> {/* Render subtotal */}
-                            { user.id !== null ?
-                                <button className="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded w-full mt-4" onClick={addToCart}>Add to Cart</button> :
-                                <Link to="/login" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">Login to buy</Link>
-                            }
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="mt-20">
-                <h2 className="text-2xl">Related Products</h2>
-                <FeaturedProducts />
+                <div className="mt-20">
+                    <h2 className="text-2xl">Related Products</h2>
+                    <FeaturedProducts />
+                </div>
             </div>
         </div>
     );

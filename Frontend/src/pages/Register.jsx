@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
 import Button from '../components/Button';
+import { reg } from '../assets/assets';
 
 export default function Register() {
 	const { user } = useContext(UserContext);
@@ -90,110 +91,113 @@ export default function Register() {
 	return user.id !== null ? (
 		<Navigate to="/" />
 	) : (
-		<div className='flex'>
+		<div className="flex-grow md:px-14 sm:px-12 px-6">
+			<div className='flex container px-0 lg:mt-20 sm:mt-16 mt-12'>
+			<div className='sm:w-[50%] w-full sm:flex hidden'>
+					<img src={reg} alt="register" />
+				</div>
 
-			<div className='backgroundImage' />
-
-			<div className='w-[50%] px-10 flex flex-col items-center justify-center text-sm'>
-				<form className='lg:min-w-[400px]' onSubmit={(e) => registerUser(e)}>
-					<h1 className='text-3xl font-bold'>Create Account</h1>
-					<p className='text-lg text-text1'>Please enter details</p>
-					<div className='mt-5'>
-						<label htmlFor="firstName">First Name</label><br/>
-						<input
-							type="text"
-							id="firstName"
-							className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
-							placeholder="Enter First Name"
-							required
-							value={firstName}
-							onChange={(e) => {
-								setFirstName(e.target.value);
-							}}
-						/>
-					</div>
-					<div className='mt-3'>
-						<label htmlFor="lastName">Last Name</label><br/>
-						<input
-							type="text"
-							id="lastName"
-							className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
-							placeholder="Enter Last Name"
-							required
-							value={lastName}
-							onChange={(e) => {
-								setLastName(e.target.value);
-							}}
-						/>
-					</div>
-					<div className='mt-3'>
-						<label htmlFor="email">Email</label>
-						<input
-							type="text"
-							id="email"
-							className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
-							placeholder="Enter Email"
-							required
-							value={email}
-							onChange={(e) => {
-								setEmail(e.target.value);
-							}}
-						/>
-					</div>
-					<div className='mt-3'>
-						<label htmlFor="mobileNo">Mobile No</label>
-						<input
-							type="number"
-							id="mobileNo"
-							className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
-							placeholder="Enter 11 Digit No."
-							required
-							value={mobileNo}
-							onChange={(e) => {
-								setMobileNo(e.target.value);
-							}}
-						/>
-					</div>
-					<div className='mt-3'>
-						<label htmlFor="password">Password</label>
-						<input
-							type="password"
-							id="password"
-							className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
-							placeholder="Enter Password"
-							required
-							value={password}
-							onChange={(e) => {
-								setPassword(e.target.value);
-							}}
-						/>
-					</div>
-					<div className='mt-3'>
-						<label htmlFor="confirmPassword">Confirm Password</label>
-						<input
-							type="password"
-							id="confirmPassword"
-							className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
-							placeholder="Confirm Password"
-							required
-							value={confirmPassword}
-							onChange={(e) => {
-								setConfirmPassword(e.target.value);
-							}}
-						/>
-					</div>
-					<div className='flex justify-between items-center mt-5'>
-						{/*conditionally render submit button based on isActive state, the current state of the isActive is false*/}
-						{isActive ? (
-							<Button label="SIGN UP" type="submit" />
-						) : (
-							<Button label="SIGN UP" type="submit" disabled />
-						)}
-						<Link to="/login">
-                            <p>Already have an account?</p>
-                        </Link>
-					</div>
-				</form>
+				<div className='sm:w-[50%] w-full flex flex-col items-center justify-center text-sm'> 
+					<form className='w-full lg:px-20 md:px-16 sm:px-12' onSubmit={(e) => registerUser(e)}>
+						<h1 className='text-3xl font-bold'>Create Account</h1>
+						<p className='text-lg text-text1'>Please enter details</p>
+						<div className='mt-5'>
+							<label htmlFor="firstName">First Name</label><br/>
+							<input
+								type="text"
+								id="firstName"
+								className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
+								placeholder="Enter First Name"
+								required
+								value={firstName}
+								onChange={(e) => {
+									setFirstName(e.target.value);
+								}}
+							/>
+						</div>
+						<div className='mt-3'>
+							<label htmlFor="lastName">Last Name</label><br/>
+							<input
+								type="text"
+								id="lastName"
+								className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
+								placeholder="Enter Last Name"
+								required
+								value={lastName}
+								onChange={(e) => {
+									setLastName(e.target.value);
+								}}
+							/>
+						</div>
+						<div className='mt-3'>
+							<label htmlFor="email">Email</label>
+							<input
+								type="text"
+								id="email"
+								className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
+								placeholder="Enter Email"
+								required
+								value={email}
+								onChange={(e) => {
+									setEmail(e.target.value);
+								}}
+							/>
+						</div>
+						<div className='mt-3'>
+							<label htmlFor="mobileNo">Mobile No</label>
+							<input
+								type="number"
+								id="mobileNo"
+								className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
+								placeholder="Enter 11 Digit No."
+								required
+								value={mobileNo}
+								onChange={(e) => {
+									setMobileNo(e.target.value);
+								}}
+							/>
+						</div>
+						<div className='mt-3'>
+							<label htmlFor="password">Password</label>
+							<input
+								type="password"
+								id="password"
+								className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
+								placeholder="Enter Password"
+								required
+								value={password}
+								onChange={(e) => {
+									setPassword(e.target.value);
+								}}
+							/>
+						</div>
+						<div className='mt-3'>
+							<label htmlFor="confirmPassword">Confirm Password</label>
+							<input
+								type="password"
+								id="confirmPassword"
+								className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
+								placeholder="Confirm Password"
+								required
+								value={confirmPassword}
+								onChange={(e) => {
+									setConfirmPassword(e.target.value);
+								}}
+							/>
+						</div>
+						<div className='flex justify-between items-center mt-5'>
+							{/*conditionally render submit button based on isActive state, the current state of the isActive is false*/}
+							{isActive ? (
+								<Button label="SIGN UP" type="submit" />
+							) : (
+								<Button label="SIGN UP" type="submit" disabled />
+							)}
+							<Link to="/login">
+								<p>Already have an account?</p>
+							</Link>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	);

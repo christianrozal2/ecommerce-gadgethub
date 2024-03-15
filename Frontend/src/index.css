@@ -18,21 +18,6 @@ body {
   font-family: sans-serif;
 }
 
-.backgroundImage {
-  width: 50%;
-  height: 100vh;
-  background-image: url('./assets/reg.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.backgroundImage1 {
-  width: 50%;
-  height: 100vh;
-  background-image: url('./assets/log.jpg');
-  background-size: cover;
-  background-position: center;
-}
 
 .backgroundImage2 {
   background-image: url('./assets/hero.png');

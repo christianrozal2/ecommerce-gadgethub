@@ -3,6 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 import Button from '../components/Button';
+import { log } from '../assets/assets';
 
 export default function Login() {
     const { user, setUser } = useContext(UserContext);
@@ -79,49 +80,53 @@ export default function Login() {
         (user.id !== null) ?
             <Navigate to="/" />
         :
-        <div className='flex'>
-            <div className='backgroundImage1' />
+        <div className="flex-grow md:px-14 sm:px-12 px-6">
+            <div className='flex container px-0 lg:mt-20 sm:mt-16 mt-12'>
+                <div className='sm:w-[50%] w-full sm:flex hidden'>
+                    <img src={log} alt="login" />
+                </div>
 
-            <div className='w-[50%] flex flex-col items-center justify-center text-sm'> 
-                <form className='lg:min-w-[400px]' onSubmit={(e) => authenticate(e)}>
-                    <h1 className='text-3xl font-bold'>Welcome</h1>
-                    <p className='text-lg text-text1'>Please login here</p>
-                    <div className='mt-5'>
-                        <label htmlFor="userEmail">Email address</label><br/>
-                        <input
-                            type="email"
-                            className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
-                            id="userEmail"
-                            placeholder="Enter email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
+                <div className='sm:w-[50%] w-full flex flex-col items-center justify-center text-sm'> 
+                    <form className='w-full lg:px-20 md:px-16 sm:px-12' onSubmit={(e) => authenticate(e)}>
+                        <h1 className='text-3xl font-bold'>Welcome</h1>
+                        <p className='text-lg text-text1'>Please login here</p>
+                        <div className='mt-5'>
+                            <label htmlFor="userEmail">Email address</label><br/>
+                            <input
+                                type="email"
+                                className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
+                                id="userEmail"
+                                placeholder="Enter email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
 
-                    <div className='mt-3'>
-                        <label htmlFor="password">Password</label><br/>
-                        <input
-                            type="password"
-                            className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
-                            id="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className='mt-5 flex justify-between items-center'>
-                        {isActive ?
-                            <Button label='SIGN IN' type="submit" />
-                        :
-                            <Button label='SIGN IN' type="submit" disabled />
-                        }
-                        <Link to="/register">
-                            <p>Create an account?</p>
-                        </Link>
-                    </div>
-                </form>
+                        <div className='mt-3'>
+                            <label htmlFor="password">Password</label><br/>
+                            <input
+                                type="password"
+                                className="border-2 border-text1 rounded-lg p-2 mt-1 w-full"
+                                id="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className='mt-5 flex justify-between items-center'>
+                            {isActive ?
+                                <Button label='SIGN IN' type="submit" />
+                            :
+                                <Button label='SIGN IN' type="submit" disabled />
+                            }
+                            <Link to="/register">
+                                <p>Create an account?</p>
+                            </Link>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     )

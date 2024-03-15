@@ -66,7 +66,7 @@ const UpdateProfile = ({setDetails}) => {
     return (
         <div className=''>
           <h3 className='text-2xl font-bold'>Personal Information</h3>
-            <form className="mt-10">
+            <form className="md:mt-10 mt-5">
                 <div className="flex flex-col">
                     <label htmlFor="firstName">First Name:</label>
                     <input

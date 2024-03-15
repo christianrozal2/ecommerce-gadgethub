@@ -10,6 +10,8 @@ export default function Error() {
 	}
 
 	return (
-		<Banner data={data}/>
+		<div className="flex-grow md:px-14 sm:px-12 px-6">
+			<Banner data={data}/>
+		</div>
 	)
 }
